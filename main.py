@@ -1,23 +1,36 @@
 from pprint import pprint
+from typing import Any, cast
 
 import yaml
 
+from models.v1 import Book, ParsedBook
 
-def open_ledger():
+
+def open_book() -> dict[str, Any]:
     with open('ledger.yml') as file:
-        return yaml.load(file, Loader=yaml.FullLoader)
+        yml: Any = yaml.load(file, Loader=yaml.FullLoader)
+        return cast(dict[str, Any], yml)
 
 
-def balance(transactions):
-    report = {}
-    for transaction in transactions:
-        acc1: str = transaction['accounts'][0]
-        acc2: str = transaction['accounts'][1]
-        report[acc1] = report.get(acc1, 0) + transaction['value']
-        report[acc2] = report.get(acc2, 0) - transaction['value']
+def balance(book: Book) -> dict[str, float]:
+    report: dict[str, float] = {}
+    for transaction in book.transactions:
+        for r in transaction.records:
+            report[r.account] = report.get(r.account, 0) + r.value
     return report
 
 
+def normalize_book(book: ParsedBook) -> Book:
+    updated_book = Book(
+        name=book.name,
+        transactions=[tx.detailed() for tx in book.transactions]
+    )
+    return updated_book
+
+
 if __name__ == '__main__':
-    ledger = open_ledger()
-    pprint(balance(ledger['transactions']))
+    raw_book = open_book()
+    parsed_book = ParsedBook(**raw_book)
+    normalized_book = normalize_book(parsed_book)
+    balance_report = balance(normalized_book)
+    pprint(balance_report)
