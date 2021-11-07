@@ -5,6 +5,7 @@ dependencies:
   - python=3.9
   - pip=21.2.4
   - pyyaml=6.0
+  - pydantic=1.8.2
   - mypy=0.910
   - flake8=3.9.2
   - pip:
