@@ -3,10 +3,11 @@ channels:
   - defaults
 dependencies:
   - python=3.9
-  - pip=21.2.4
   - pyyaml=6.0
   - pydantic=1.8.2
+  - pytest=6.2.4
   - mypy=0.910
+  - pytest-cov=2.12.1
   - flake8=3.9.2
   - pip:
     - types-PyYAML==6.0.0
