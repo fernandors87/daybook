@@ -21,6 +21,11 @@ def book_john_raw():
 
 
 @pytest.fixture
+def book_empty():
+    return Book(name='Empty', transactions=[])
+
+
+@pytest.fixture
 def book_john():
     transactions = [
         Transaction(
