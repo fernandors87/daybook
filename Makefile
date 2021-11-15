@@ -4,6 +4,10 @@ MAIN_FILE=daybook/main.py
 run:
 	- python $(MAIN_FILE)
 
+.PHONY: test
+test:
+	- python -m pytest --cov=daybook --cov-fail-under=75
+
 .PHONY: type-checking
 type-checking:
 	- mypy $(MAIN_FILE) --strict
