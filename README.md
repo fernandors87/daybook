@@ -14,13 +14,11 @@ conda activate daybook
 ## Run
 
 ```shell
-python main.py
+make run
 ```
 
-# Roadmap
+## Tests
 
-- Allow `nubank_checking_account.py` process a file from CLI arguments
-- Allow `daybook` to process a file from CLI arguments
-- Modularize reports such as `balance`
-- Create a `profit & losses` report
-- Add the CI workflow
+```shell
+make test
+```
