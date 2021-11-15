@@ -6,7 +6,7 @@ run:
 
 .PHONY: test
 test:
-	- python -m pytest --cov=daybook --cov-fail-under=75
+	- python -m pytest --cov=daybook --cov-fail-under=80
 
 .PHONY: type-checking
 type-checking:
