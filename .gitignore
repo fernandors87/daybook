@@ -1,4 +1,7 @@
+__pycache__
+.mypy_cache/
+.pytest_cache
+.vscode/
+.coverage
 ledger.yml
 resources/
-.mypy_cache
-__pycache__
